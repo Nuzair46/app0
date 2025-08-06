@@ -1,6 +1,7 @@
 # App0
 
 App0 is a desktop application that allows users to generate and run small personal apps ("applets") using AI — without coding, terminals, or installing anything else.
+This is a PoC that I want to try building in public in the future
 
 ## Features
 

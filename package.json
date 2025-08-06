@@ -1,0 +1,72 @@
+{
+  "name": "app0",
+  "version": "1.0.0",
+  "description": "Desktop application for generating and running AI-powered applets",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "npm run build && concurrently \"npm run build:watch\" \"npm run electron:dev\"",
+    "build": "npm run build:main && npm run build:renderer",
+    "build:main": "tsc -p tsconfig.main.json",
+    "build:renderer": "webpack --config webpack.renderer.config.js",
+    "build:watch": "npm run build:main -- --watch",
+    "electron:dev": "wait-on dist/main.js && electron .",
+    "electron:pack": "electron-builder",
+    "clean": "rimraf dist",
+    "setup-bun": "node scripts/setup-bun.js",
+    "postinstall": "npm run setup-bun"
+  },
+  "keywords": [
+    "electron",
+    "ai",
+    "app-generator",
+    "nextjs",
+    "desktop"
+  ],
+  "author": "App0 Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/uuid": "^9.0.0",
+    "concurrently": "^8.0.0",
+    "css-loader": "^6.8.0",
+    "electron": "^26.0.0",
+    "electron-builder": "^24.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "rimraf": "^5.0.0",
+    "style-loader": "^3.3.0",
+    "ts-loader": "^9.4.0",
+    "typescript": "^5.0.0",
+    "wait-on": "^7.0.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0"
+  },
+  "dependencies": {
+    "axios": "^1.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sqlite3": "^5.1.0",
+    "uuid": "^9.0.0"
+  },
+  "build": {
+    "appId": "com.app0.desktop",
+    "productName": "App0",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "node_modules/**/*"
+    ],
+    "mac": {
+      "category": "public.app-category.developer-tools"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  }
+}

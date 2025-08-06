@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(node:*)",
+      "Bash(../../runtime/bun install)",
+      "Bash(../../runtime/bun run dev)",
+      "Bash(npm run build:main:*)"
+    ],
+    "deny": []
+  }
+}
